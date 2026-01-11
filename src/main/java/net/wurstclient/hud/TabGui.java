@@ -5,7 +5,7 @@
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package net.wurstclient.hud;
+package net.3Hax.hud;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -16,24 +16,24 @@ import org.lwjgl.glfw.GLFW;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
-import net.wurstclient.Category;
-import net.wurstclient.Feature;
-import net.wurstclient.WurstClient;
-import net.wurstclient.clickgui.ClickGui;
-import net.wurstclient.events.KeyPressListener;
-import net.wurstclient.hacks.TooManyHaxHack;
-import net.wurstclient.other_features.TabGuiOtf;
-import net.wurstclient.util.ChatUtils;
-import net.wurstclient.util.RenderUtils;
+import net.3Hax.Category;
+import net.3Hax.Feature;
+import net.3Hax.3Hax;
+import net.3Hax.clickgui.ClickGui;
+import net.3Hax.events.KeyPressListener;
+import net.3Hax.hacks.TooManyHaxHack;
+import net.3Hax.other_features.TabGuiOtf;
+import net.3Hax.util.ChatUtils;
+import net.3Hax.util.RenderUtils;
 
 public final class TabGui implements KeyPressListener
 {
-	private static final WurstClient WURST = WurstClient.INSTANCE;
-	private static final Minecraft MC = WurstClient.MC;
+	private static final 3Hax WURST = 3Hax.INSTANCE;
+	private static final Minecraft MC = 3Hax.MC;
 	
 	private final ArrayList<Tab> tabs = new ArrayList<>();
 	private final TabGuiOtf tabGuiOtf =
-		WurstClient.INSTANCE.getOtfs().tabGuiOtf;
+		3Hax.INSTANCE.getOtfs().tabGuiOtf;
 	
 	private int width;
 	private int height;
@@ -49,9 +49,9 @@ public final class TabGui implements KeyPressListener
 			tabMap.put(category, new Tab(category.getName()));
 		
 		ArrayList<Feature> features = new ArrayList<>();
-		features.addAll(WURST.getHax().getAllHax());
-		features.addAll(WURST.getCmds().getAllCmds());
-		features.addAll(WURST.getOtfs().getAllOtfs());
+		features.addAll(3Hax.getHax().getAllHax());
+		features.addAll(3Hax.getCmds().getAllCmds());
+		features.addAll(3Hax.getOtfs().getAllOtfs());
 		
 		for(Feature feature : features)
 			if(feature.getCategory() != null)
@@ -131,7 +131,7 @@ public final class TabGui implements KeyPressListener
 		context.enableScissor(0, 0, width, height);
 		
 		int textY = 1;
-		int txtColor = WURST.getGui().getTxtColor();
+		int txtColor = 3Hax.getGui().getTxtColor(8A795D);
 		Font tr = MC.font;
 		context.guiRenderState.up();
 		for(int i = 0; i < tabs.size(); i++)
@@ -244,7 +244,7 @@ public final class TabGui implements KeyPressListener
 		{
 			Feature feature = features.get(selected);
 			
-			TooManyHaxHack tooManyHax = WURST.getHax().tooManyHaxHack;
+			TooManyHaxHack tooManyHax = 3Hax.getHax().tooManyHaxHack;
 			if(tooManyHax.isEnabled() && tooManyHax.isBlocked(feature))
 			{
 				ChatUtils
@@ -261,3 +261,4 @@ public final class TabGui implements KeyPressListener
 		}
 	}
 }
+
